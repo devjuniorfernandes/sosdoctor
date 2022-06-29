@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HistoricController;
 use App\Http\Controllers\JustificationController;
 use App\Http\Controllers\OccurrenceController;
 use App\Http\Controllers\ReportController;
@@ -72,5 +73,12 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::get('/requisitions/{id}', [RequisitionController::class, 'show']);
     Route::put('/requisitions/{id}', [RequisitionController::class, 'update']);
     Route::delete('/requisitions/{id}', [RequisitionController::class, 'destroy']);
+
+    // Requisitions
+    Route::get('/historics', [HistoricController::class, 'index']);
+    Route::post('/historics', [HistoricController::class, 'store']);
+    Route::get('/historics/{id}', [HistoricController::class, 'show']);
+    Route::put('/historics/{id}', [HistoricController::class, 'update']);
+    Route::delete('/historics/{id}', [HistoricController::class, 'destroy']);
 
 });
