@@ -4,8 +4,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HistoricController;
+use App\Http\Controllers\InsuranceController;
 use App\Http\Controllers\JustificationController;
 use App\Http\Controllers\OccurrenceController;
+use App\Http\Controllers\PersonalbackController;
+use App\Http\Controllers\PhysicalController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SchedulesController;
 use App\Http\Controllers\RequisitionController;
@@ -29,7 +32,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/occurrencescount', [OccurrenceController::class, 'count']);
 
 // Protected Routes
-Route::group(['middleware' => ['auth:sanctum']], function() {
+Route::group(['middleware' => ['auth:sanctum']], function () {
 
     // User
     Route::get('/user', [AuthController::class, 'user']);
@@ -40,7 +43,7 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
     // Occurrences
     Route::get('/occurrences', [OccurrenceController::class, 'index']);
-   // Route::get('/occurrencescount', [OccurrenceController::class, 'count']);
+    // Route::get('/occurrencescount', [OccurrenceController::class, 'count']);
     Route::post('/occurrences', [OccurrenceController::class, 'store']);
     Route::get('/occurrences/{id}', [OccurrenceController::class, 'show']);
     Route::put('/occurrences/{id}', [OccurrenceController::class, 'update']);
@@ -80,5 +83,25 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::get('/historics/{id}', [HistoricController::class, 'show']);
     Route::put('/historics/{id}', [HistoricController::class, 'update']);
     Route::delete('/historics/{id}', [HistoricController::class, 'destroy']);
+
+    // Insurence
+    Route::post('/insurance', [InsuranceController::class, 'store']);
+    Route::get('/insurance/{id}', [InsuranceController::class, 'show']);
+    Route::put('/insurance/{id}', [InsuranceController::class, 'update']);
+
+    // Physical
+    Route::post('/physical', [PhysicalController::class, 'store']);
+    Route::get('/physical/{id}', [PhysicalController::class, 'show']);
+    Route::put('/physical/{id}', [PhysicalController::class, 'update']);
+
+    // Personalback
+    Route::post('/personalback', [PersonalbackController::class, 'store']);
+    Route::get('/personalback/{id}', [PersonalbackController::class, 'show']);
+    Route::put('/personalback/{id}', [PersonalbackController::class, 'update']);
+
+    // Physical Exam
+    Route::post('/physicalexam', [PhysicalController::class, 'store']);
+    Route::get('/physicalexam/{id}', [PhysicalController::class, 'show']);
+    Route::put('/physicalexam/{id}', [PhysicalController::class, 'update']);
 
 });

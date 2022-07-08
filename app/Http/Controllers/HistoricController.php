@@ -54,4 +54,12 @@ class HistoricController extends Controller
             'historics' => $historic
         ], 200);
     }
+
+    // Get Single Occorrence
+    public function show($id)
+    {
+        return response([
+            'historic' => Historic::where('id', $id)->get()
+        ]);
+    }
 }
